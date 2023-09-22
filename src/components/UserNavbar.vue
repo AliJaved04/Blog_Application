@@ -5,13 +5,19 @@
         prepend-icon="mdi-account-group"
         value="Create Post"
         title="CreatePost"
-        @click="usersClick"
+        @click="createPost"
       />
       <VListItem
         prepend-icon="mdi-post"
         value="Posts"
         title="Posts"
         @click="postsClick"
+      />
+      <VListItem
+        prepend-icon="mdi-post"
+        value="My Post"
+        title="My Post"
+        @click="myPosts"
       />
       <VListItem
         prepend-icon="mdi-logout"
@@ -28,11 +34,14 @@ import axios from "axios";
 
 export default {
   methods: {
-    usersClick() {
+    createPost() {
       this.$router.push("/userdashboard/addpost");
     },
     postsClick() {
       this.$router.push("/userdashboard/allpostsuser");
+    },
+    myPosts() {
+      this.$router.push("/userdashboard/myPosts");
     },
     async logout() {
       const response = await axios.post(

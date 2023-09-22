@@ -8,6 +8,19 @@
             <v-card-text>{{ post.description }}</v-card-text>
             <div style="margin: 20px">
               <v-row justify="end">
+                <v-btn
+                  @click="
+                    navigateToProductDetail(
+                      post.id,
+
+                      post.description,
+
+                      post.title
+                    )
+                  "
+                >
+                  Details
+                </v-btn>
                 <v-btn icon @click="editClick(post)" class="mr-2">
                   <v-icon color="blue">mdi-pencil</v-icon>
                 </v-btn>
@@ -64,6 +77,12 @@ export default {
     async editClick(post) {
       this.editPost = post;
       this.isEditPopupVisible = true;
+    },
+    navigateToProductDetail(postId, postTitle, postDescription) {
+      this.$router.push({
+        name: "SinglePost",
+        params: { id: postId, title: postTitle, description: postDescription },
+      });
     },
 
     async deleteClick(id) {

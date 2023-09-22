@@ -8,6 +8,19 @@
             <v-card-text>{{ post.description }}</v-card-text>
             <div style="margin: 20px">
               <v-row justify="end">
+                <v-btn
+                  @click="
+                    navigateToProductDetail(
+                      post.id,
+
+                      post.description,
+
+                      post.title
+                    )
+                  "
+                >
+                  Details
+                </v-btn>
                 <v-btn icon @click="editClick(post)" class="mr-2">
                   <v-icon color="blue">mdi-pencil</v-icon>
                 </v-btn>
@@ -46,14 +59,15 @@
 import axios from "axios";
 export default {
   async beforeMount() {
-    const value = await axios.get("http://10.0.10.211:3300/api/showposts", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      },
-    });
+    if (!localStorage.getItem("access_token")) {
+      this.$router.push("/");
+    }
+    console.log(localStorage.getItem("user_id"));
 
-    this.posts = value.data.data;
+    // const value = await axios.get(
+    //   `http://10.0.10.211:3300/api/posts/${localStorage.getItem("user_id")}`
+    // );
+    // this.posts = value.data.data;
   },
 
   data() {
@@ -67,6 +81,12 @@ export default {
     async editClick(post) {
       this.editPost = post;
       this.isEditPopupVisible = true;
+    },
+    navigateToProductDetail(postId, postTitle, postDescription) {
+      this.$router.push({
+        name: "SinglePost",
+        params: { id: postId, title: postTitle, description: postDescription },
+      });
     },
 
     async deleteClick(id) {

@@ -18,11 +18,6 @@
 import CommentComponent from "./CommentComponent.vue";
 
 export default {
-  beforeMount() {
-    if (!localStorage.getItem("access_token")) {
-      this.$router.push("/");
-    }
-  },
   components: {
     CommentComponent,
   },
@@ -39,36 +34,18 @@ export default {
     };
   },
 
-  mounted() {
+  beforeMount() {
     const postId = this.$route.params.id; // Assuming the route parameter is named "id"
 
     const postTitle = this.$route.params.title;
 
     const postDescription = this.$route.params.description;
 
-    console.log(postId, postTitle, postDescription);
+    this.dataToPass = postId;
 
     this.title = postTitle;
 
     this.description = postDescription;
-
-    // axios
-
-    //   .get(`http://10.0.10.211:3300/api/posts/${postId}`)
-
-    //   .then((response) => {
-
-    //     this.post = response.data;
-
-    //     this.dataToPass = postId;
-
-    //   })
-
-    //   .catch((error) => {
-
-    //     console.error("Error fetching Post:", error);
-
-    //   });
   },
 };
 </script>

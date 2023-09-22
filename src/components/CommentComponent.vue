@@ -25,37 +25,54 @@ import axios from "axios";
 export default {
   methods: {
     beforeMount() {
-      if (!localStorage.getItem("access_token")) {
-        this.$router.push("/");
-      }
+      console.log(this.propName);
     },
     async submitHandlerAxios() {
-      const response = await axios.post(
-        "http://10.0.10.211:3300/api/create/comment",
+      if (localStorage.getItem("user_id")) {
+        const response = await axios.post(
+          "http://10.0.10.211:3300/api/create/comment",
 
-        {
-          comment: this.comment,
-
-          post_id: this.propName,
-
-          id: 0,
-        },
-
-        {
-          headers: {
-            "Content-Type": "application/json",
-
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          {
+            comment: this.comment,
+            post_id: this.propName,
+            user_id: localStorage.getItem("user_id"),
           },
-        }
-      );
 
-      console.log(response.data);
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        );
+        if (response.data.message === "Comment added successfully") {
+          console.log("Added Comment");
+        }
+      } else {
+        const response = await axios.post(
+          "http://10.0.10.211:3300/api/create/comment",
+
+          {
+            comment: this.comment,
+            post_id: this.propName,
+          },
+
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        );
+        if (response.data.message === "Comment added successfully") {
+          console.log("Added Comment");
+        }
+      }
     },
   },
 
   props: {
-    propName: Number,
+    propName: String,
   },
 
   data: () => ({

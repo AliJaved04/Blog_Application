@@ -5,14 +5,23 @@ import UserDashboard from '../components/UserDashboard.vue'
 import LoginComponent from '../components/LoginComponent.vue'
 import SinglePost from '../components/SinglePost.vue'
 import AddPosts from '../components/AddPosts.vue'
-import AllPosts from '../components/AllPosts.vue'
+import AllPosts from '../components/AllPostsAdmin.vue'
 import AllPostsUser from '../components/AllPostsUser.vue'
 import AllUsers from '../components/AllUsers.vue'
+import AllPostsGuest from '../components/AllPostsGuest.vue'
+import OwnPosts from '../components/OwnPosts.vue'
 const routes = [
     {
         path: "/register",
         name: "Register_Component",
         component: RegisterComponent,
+
+    },
+
+    {
+        path: "/allpostsguest",
+        name: "AllPostsGuest",
+        component: AllPostsGuest,
 
     },
 
@@ -51,6 +60,11 @@ const routes = [
                     path: "allpostsuser",
                     name: "AllPostsUser",
                     component: AllPostsUser
+                },
+                {
+                    path: "myposts",
+                    name: "OwnPosts",
+                    component: OwnPosts
                 },
             ]
     }, {

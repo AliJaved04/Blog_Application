@@ -59,9 +59,6 @@
 import axios from "axios";
 export default {
   async beforeMount() {
-    if (!localStorage.getItem("access_token")) {
-      this.$router.push("/");
-    }
     const value = await axios.get("http://10.0.10.211:3300/api/posts");
     this.posts = value.data.data;
   },

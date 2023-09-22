@@ -36,7 +36,7 @@ export default {
       this.$router.push("/adminDashboard/allusers");
     },
     postsClick() {
-      this.$router.push("/adminDashboard/allposts");
+      this.$router.push("/admindashboard/allposts");
     },
     async logout() {
       const response = await axios.post(
