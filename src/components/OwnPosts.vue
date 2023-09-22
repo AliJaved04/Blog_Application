@@ -64,9 +64,19 @@ export default {
     }
     console.log(localStorage.getItem("user_id"));
 
-    // const value = await axios.get(
-    //   `http://10.0.10.211:3300/api/posts/${localStorage.getItem("user_id")}`
-    // );
+    const value = await axios.get(
+      `http://10.0.10.211:3300/api/posts/${localStorage.getItem("user_id")}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
+    );
+
+    const data = await value.data;
+    console.log(data);
+
     // this.posts = value.data.data;
   },
 

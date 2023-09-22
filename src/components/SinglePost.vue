@@ -22,29 +22,23 @@ export default {
     CommentComponent,
   },
 
+  //  http://10.0.10.211:3300/api/posts/1/comments
+
   data() {
     return {
       post: [],
-
       dataToPass: null,
-
       title: "",
-
       description: "",
     };
   },
 
   beforeMount() {
     const postId = this.$route.params.id; // Assuming the route parameter is named "id"
-
     const postTitle = this.$route.params.title;
-
     const postDescription = this.$route.params.description;
-
     this.dataToPass = postId;
-
     this.title = postTitle;
-
     this.description = postDescription;
   },
 };

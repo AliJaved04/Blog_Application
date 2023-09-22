@@ -52,6 +52,7 @@ export default {
 
       const data = await response.data;
       if (data.message === "Logout successful") {
+        localStorage.removeItem("user_id");
         localStorage.removeItem("access_token");
         this.$router.push("/");
       } else {
