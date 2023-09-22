@@ -1,0 +1,77 @@
+{
+    "user": [
+        {
+            "username": "User 4",
+            "email": "example3@gmail.com",
+            "password": "Ali78648804",
+            "id": 5
+        },
+        {
+            "username": "User 01",
+            "email": "example1@gmail.com",
+            "password": "Ali78648804",
+            "id": 6
+        },
+        {
+            "username": "User 01",
+            "email": "example1@gmail.com",
+            "password": "Ali78648804",
+            "id": 7
+        },
+        {
+            "username": "User 01",
+            "email": "example1@gmail.com",
+            "password": "Ali78648804",
+            "id": 8
+        },
+        {
+            "username": "User 01",
+            "email": "example1@gmail.com",
+            "password": "Ali78648804",
+            "id": 9
+        },
+        {
+            "username": "User 01",
+            "email": "example1@gmail.com",
+            "password": "Ali78648804",
+            "id": 10
+        }
+    ],
+    "posts": [
+        {
+            "title": "aplha",
+            "description": " sndnsadsad,",
+            "id": 1
+        },
+        {
+            "title": "beta",
+            "description": " sndnsadsa,d,",
+            "id": 2
+        },
+        {
+            "title": "ceta",
+            "description": " sndnsadsa,d,",
+            "id": 3
+        },
+        {
+            "title": "deta",
+            "description": " sndnsadsa,d,",
+            "id": 4
+        },
+        {
+            "title": "fnsfnklsdlkfdsl",
+            "description": "ssdsdsdsas",
+            "id": 6
+        },
+        {
+            "title": "alpha",
+            "description": "ok",
+            "id": 7
+        },
+        {
+            "title": "lamda",
+            "description": "hellooooooo",
+            "id": 8
+        }
+    ]
+}
