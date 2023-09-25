@@ -21,12 +21,6 @@
                 >
                   Details
                 </v-btn>
-                <v-btn icon @click="editClick(post)" class="mr-2">
-                  <v-icon color="blue">mdi-pencil</v-icon>
-                </v-btn>
-                <v-btn icon @click="deleteClick(post.id)">
-                  <v-icon color="red">mdi-delete</v-icon>
-                </v-btn>
               </v-row>
             </div>
             <v-dialog v-model="isEditPopupVisible" max-width="600">
@@ -42,10 +36,6 @@
                     label="Description"
                   ></v-textarea>
                 </v-card-text>
-                <v-card-actions>
-                  <v-btn color="blue" @click="saveEdit(post.id)">Save</v-btn>
-                  <v-btn color="red" @click="cancelEdit">Cancel</v-btn>
-                </v-card-actions>
               </v-card>
             </v-dialog>
           </v-card>
@@ -74,64 +64,11 @@ export default {
     };
   },
   methods: {
-    async editClick(post) {
-      this.editPost = post;
-      this.isEditPopupVisible = true;
-    },
     navigateToProductDetail(postId, postTitle, postDescription) {
       this.$router.push({
         name: "SinglePost",
         params: { id: postId, title: postTitle, description: postDescription },
       });
-    },
-
-    async deleteClick(id) {
-      const token = localStorage.getItem("access_token");
-
-      axios
-
-        .delete(`http://10.0.10.211:3300/api/deletepost/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-
-        .then((response) => {
-          // Handle the successful deletion
-
-          console.log("Item deleted successfully.");
-
-          console.log(response.data);
-
-          // Remove the deleted post from the 'posts' array
-
-          this.posts = this.posts.filter((post) => post.id !== id);
-        })
-
-        .catch((error) => {
-          // Handle the error
-
-          console.error("Error deleting item:", error);
-        });
-    },
-    cancelEdit() {
-      this.isEditPopupVisible = false;
-      // this.editPost = null;
-    },
-    async saveEdit(id) {
-      this.isEditPopupVisible = false;
-      const response = await axios.post(
-        `http://10.0.10.211:3300/api/editpost/${id}`,
-        { title: this.editPost.title, description: this.editPost.description },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          },
-        }
-      );
-
-      console.log(response);
     },
   },
 };
